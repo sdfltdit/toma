@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric Calculator</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+        }
+        .dropdown, .input-field {
+            margin-bottom: 15px;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .results p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fabric Calculator</h1>
+        <div class="dropdown">
+            <label for="item-type">Select Item Type:</label>
+            <select id="item-type">
+                <option value="knit">Knit Items</option>
+                <option value="woven">Woven Items</option>
+                <option value="home-textiles">Home Textiles</option>
+                <option value="accessories">Accessories</option>
+            </select>
+        </div>
+        <div class="dropdown">
+            <label for="item">Select Item:</label>
+            <select id="item">
+                <!-- Dynamic options will be populated here based on item type -->
+            </select>
+        </div>
+        <div id="measurements">
+            <!-- Dynamic input fields for measurements will be populated here based on selected item -->
+        </div>
+        <button onclick="calculateFabric()">Calculate Fabric Requirement</button>
+        <div class="results" id="results">
+            <!-- Calculation results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const items = {
+            knit: ['T-shirt', 'Polo Shirt', 'Hoodie', 'Sweater', 'Tank Top', 'Knit Dresses', 'Sweatpants', 'Joggers', 'Leggings', 'Loungewear', 'Cardigans', 'Activewear'],
+            woven: ['Shirt', 'Blouse', 'Dress', 'Jacket', 'Pants', 'Dress Pants', 'Chinos', 'Jeans', 'Blazers', 'Coats', 'Suits', 'Skirts', 'Uniforms', 'Denim Jackets', 'Baby Clothes'],
+            homeTextiles: ['Towels', 'Napkins', 'Tablecloths', 'Curtains', 'Drapes', 'Bedding'],
+            accessories: ['Mittens', 'Gloves', 'Beanies', 'Scarves']
+        };
+
+        const measurementFields = {
+            'T-shirt': ['Chest Width (inches)', 'Body Length (inches)', 'Sleeve Length (inches)', 'Neck Opening (inches)', 'Rib Fabric (inches)', 'Weight (GSM)', 'Quantity'],
+            'Polo Shirt': ['Chest Width (inches)', 'Body Length (inches)', 'Sleeve Length (inches)', 'Neck Opening (inches)', 'Pocketing Fabric (inches)', 'Rib Fabric (inches)', 'Weight (GSM)', 'Quantity'],
+            'Hoodie': ['Chest Width (inches)', 'Body Length (inches)', 'Sleeve Length (inches)', 'Hood Size (inches)', 'Pocket Size (inches)', 'Rib Fabric (inches)', 'Weight (GSM)', 'Quantity'],
+            'Shirt': ['Chest Width (inches)', 'Body Length (inches)', 'Sleeve Length (inches)', 'Collar Size (inches)', 'Cuff Size (inches)', 'Pocketing Fabric (inches)', 'Weight (GSM)', 'Quantity'],
+            'Towels': ['Length (inches)', 'Width (inches)', 'Weight (GSM)', 'Quantity'],
+            'Mittens': ['Hand Circumference (inches)', 'Length (inches)', 'Weight (GSM)', 'Quantity'],
+            // Add other items similarly
+        };
+
+        const itemTypeSelect = document.getElementById('item-type');
+        const itemSelect = document.getElementById('item');
+        const measurementsDiv = document.getElementById('measurements');
+
+        itemTypeSelect.addEventListener('change', updateItems);
+        itemSelect.addEventListener('change', updateMeasurementFields);
+
+        function updateItems() {
+            const itemType = itemTypeSelect.value;
+            itemSelect.innerHTML = '';
+            items[itemType].forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                itemSelect.appendChild(option);
+            });
+            updateMeasurementFields();
+        }
+
+        function updateMeasurementFields() {
+            const selectedItem = itemSelect.value;
+            measurementsDiv.innerHTML = '';
+            measurementFields[selectedItem].forEach(field => {
+                const div = document.createElement('div');
+                div.classList.add('input-field');
+                const label = document.createElement('label');
+                label.textContent = field;
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = field.replace(/[^a-zA-Z]/g, '');
+                div.appendChild(label);
+                div.appendChild(input);
+                measurementsDiv.appendChild(div);
+            });
+        }
+
+        function calculateFabric() {
+            const selectedItem = itemSelect.value;
+            const fields = measurementFields[selectedItem];
+            let totalArea = 0;
+
+            fields.forEach(field => {
+                if (field.includes('inches') || field.includes('Length') || field.includes('Width')) {
+                    const input = document.getElementById(field.replace(/[^a-zA-Z]/g, ''));
+                    const value = parseFloat(input.value) || 0;
+                    totalArea += value;
+                }
+            });
+
+            const weight = parseFloat(document.getElementById('WeightGSM').value) || 0;
+            const quantity = parseInt(document.getElementById('Quantity').value) || 0;
+
+            const totalFabric = (totalArea * weight * quantity) * 1.03;
+            const totalFabricKg = totalFabric / 1000;
+
+            document.getElementById('results').innerHTML = `
+                <p>Total Fabric Required: ${totalFabricKg.toFixed(2)} kg</p>
+                <p>Note: 3% extra fabric has been added for potential waste. This tool can make mistakes; please verify manually.</p>
+            `;
+        }
+
+        updateItems();  // Initialize items for the default selection
+    </script>
+</body>
+</html>
