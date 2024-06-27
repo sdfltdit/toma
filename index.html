@@ -1,1 +1,87 @@
-<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Discover Modeling Opportunities | Model Hunter BD</title> <meta name="description" content="Explore modeling opportunities with Model Hunter BD, your gateway to the world of fashion modeling. Join us to pursue your dreams in the fashion industry. Find auditions, castings, and opportunities tailored for aspiring models. Start your journey today!"> <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Model Hunter BD", "url": "https://model-hunter.online", "logo": "https://model-hunter.online/pppf.webp", "contactPoint":{"@type": "ContactPoint", "telephone": "+1-724-470-0563", "contactType": "Customer Service", "areaServed": "BD", "availableLanguage": "English"}, "sameAs": [ "https://www.facebook.com/", "https://twitter.com/", "https://www.instagram.com/"]}</script> <style>body{display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: Arial, sans-serif; background: url('1.webp') no-repeat center center fixed; background-size: cover; position: relative;}.container{text-align: center; padding: 20px; background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent black background for text */ border-radius: 10px; max-width: 90%; width: 400px; position: relative; z-index: 1; /* Ensure text stays above the background image */}.message{font-size: 18px; margin-bottom: 10px; font-weight: bold; color: #FFD700; /* Initial color */ animation: changeColorMessage 5s infinite alternate; /* Color change animation */}.inspiring-message{font-size: 18px; margin-bottom: 20px; font-weight: bold; color: #FF1493; /* Initial color */ animation: changeColorInspiringMessage 5s infinite alternate; /* Color change animation */}.counter{font-size: 48px; font-weight: bold; color: #1E90FF; /* Initial countdown color */ animation: changeColorCounter 1s infinite; /* Color change animation */}.counter span{display: inline-block;}.spinner{width: 40px; height: 40px; margin: -20px auto 10px; /* Centered with some margin and moved slightly up */ border: 4px solid transparent; /* Semi-transparent border */ border-radius: 50%; animation: spin 2s linear infinite, changeColorSpinner 2s infinite; /* Spinner and color change animations */ position: relative; z-index: 2; /* Ensure spinner appears above other content */}@keyframes spin{0%{transform: rotate(0deg);}100%{transform: rotate(360deg);}}@keyframes changeColorSpinner{0%{border-top-color: #FFD700;}25%{border-top-color: #FF1493;}50%{border-top-color: #1E90FF;}75%{border-top-color: #FF6347;}100%{border-top-color: #00FF00;}}@keyframes changeColorMessage{0%, 100%{color: #FFD700;}/* Initial and final color */ 50%{color: #FF4500;}/* Change to orange */}@keyframes changeColorInspiringMessage{0%, 100%{color: #FF1493;}/* Initial and final color */ 50%{color: #00FF00;}/* Change to green */}@keyframes changeColorCounter{0%, 100%{color: #1E90FF;}/* Initial and final color */ 50%{color: #FFD700;}/* Change to yellow */}@media (max-width: 600px){.message, .inspiring-message{font-size: 14px;}.counter{font-size: 36px;}}</style> <script>let countdown=15; function updateCounter(){if (countdown > 0){document.getElementById('counter').innerText=countdown; countdown--;}else{window.location.href='https://model-hunter.online/';}}setInterval(updateCounter, 1500); window.onload=function(){updateCounter();}; </script></head><body> <div class="container"> <div class="spinner"></div><div class="message">ভবিষ্যত তাদের জন্য! যারা তাদের স্বপ্নের সৌন্দর্যে  আস্থা রাখে। আপনার কি নিজের প্রতি আস্থা আছে?</div><div class="inspiring-message">মডেল হান্টার বিডি আপনাকে সঠিক স্থানে নিয়ে যাচ্ছে, অনুগ্রহ করে অপেক্ষা করুন</div><div class="counter" id="counter"><span>10</span></div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Practice Tool</title>
+    <style>body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.word-display {
+    margin-bottom: 20px;
+}
+
+#foreign-word {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#translation {
+    font-size: 20px;
+    color: #555;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Language Practice Tool</h1>
+        <div id="word-display" class="word-display">
+            <p id="foreign-word">Word</p>
+            <p id="translation">Translation</p>
+        </div>
+        <button id="new-word-btn">New Word</button>
+    </div>
+    <script>const words = [
+    { foreign: "Hola", translation: "Hello" },
+    { foreign: "Adiós", translation: "Goodbye" },
+    { foreign: "Gracias", translation: "Thank you" },
+    { foreign: "Por favor", translation: "Please" },
+    { foreign: "Sí", translation: "Yes" },
+    { foreign: "No", translation: "No" },
+    { foreign: "Perdón", translation: "Sorry" },
+    { foreign: "Salud", translation: "Bless you" },
+    { foreign: "Buenos días", translation: "Good morning" },
+    { foreign: "Buenas noches", translation: "Good night" }
+];
+
+document.getElementById('new-word-btn').addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    const word = words[randomIndex];
+    document.getElementById('foreign-word').textContent = word.foreign;
+    document.getElementById('translation').textContent = word.translation;
+});
+
+// Initialize with a random word
+document.getElementById('new-word-btn').click();
+</script>
+</body>
+</html>
