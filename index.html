@@ -3,86 +3,646 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Practice Tool</title>
-    <style>body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-}
+    <title>Open Doors: Join Us in the Modeling Industry</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+        }
 
-.container {
-    text-align: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        header {
+            background: #111;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-.word-display {
-    margin-bottom: 20px;
-}
+        .marquee {
+            position: absolute;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            animation: marquee 10s linear infinite;
+        }
 
-#foreign-word {
-    font-size: 24px;
-    font-weight: bold;
-}
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
 
-#translation {
-    font-size: 20px;
-    color: #555;
-}
+        nav {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
 
-button:hover {
-    background-color: #0056b3;
-}
-</style>
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .video-section {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin-bottom: 20px;
+            background: #000;
+        }
+
+        .video-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+        }
+
+        h1,
+        h2 {
+            color: #fff;
+            text-align: center;
+        }
+
+        .content-section {
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .img-container {
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-circle {
+            width: 300px;
+            /* Adjust size as needed */
+            height: 300px;
+            /* Adjust size as needed */
+            border-radius: 50%;
+            /* Makes the image round */
+            overflow: hidden;
+            /* Ensures the shadow is visible outside the circle */
+            box-shadow: 0 0 50px red;
+        }
+
+        .img-circle img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        .h1-container {
+            position: absolute;
+            top: 5%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            animation: slideIn 3s forwards;
+            font-size: 0.5rem;
+            /* Adjust the font size as needed */
+        }
+
+        .faq-list>div:last-child {
+            border: unset;
+        }
+
+        details>summary {
+            list-style: none;
+            background-color: #000000;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+            background-color: #000000;
+        }
+
+        summary:hover {
+            color: #e31b1b;
+            background-color: #000000;
+        }
+
+        details[open] summary~* {
+            animation: sweep .5s ease-in-out;
+            background-color: #000000;
+        }
+
+        @keyframes sweep {
+            0% {
+                opacity: 0;
+                margin-left: -10px
+            }
+            50% {
+                opacity: 1;
+                margin-left: 55px
+            }
+        }
+
+        details[open] summary {
+            color: #e31b1b;
+            background-color: #000000;
+        }
+
+        details[open] p {
+            border-left: 2px solid #e31b1b;
+            margin-left: 30px;
+            padding-left: 25px;
+            opacity: 70;
+            transition: all 3s ease;
+        }
+
+        details[open] summary:after {
+            content: "-";
+            font-size: 3.2em;
+            margin: -15px 0.35em 0 0;
+            font-weight: 200;
+            background-color: #000000;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+            background-color: #000000;
+        }
+
+        .no-underline {
+            text-decoration: none;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-container div {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+        }
+
+        .footer-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-container ul li {
+            margin: 5px 0;
+        }
+
+        .footer-container ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-container ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center
+        }
+
+        .buttons .btn {
+            font-size: 20px;
+            padding: 12px;
+            border: 2px solid #fff;
+            border-radius: 100px;
+            background: 0;
+            color: #fff;
+            margin: 10px;
+            cursor: auto;
+        }
+
+        .html,
+        body {
+            overflow-x: hidden;
+        }
+
+        .placeholder-image,
+        .intro-video {
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .intro-video {
+            opacity: 0;
+        }
+
+        .transition-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+        }
+
+        .h1-container {
+            position: relative;
+            z-index: 10; /* Ensure the text is above other elements */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input, select, textarea, button {
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: #444;
+            color: #fff;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .custom-file-upload:hover {
+            background-color: #555;
+        }
+        .image-preview img, .video-preview video {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        .message {
+            display: none;
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .custom-file-upload {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Language Practice Tool</h1>
-        <div id="word-display" class="word-display">
-            <p id="foreign-word">Word</p>
-            <p id="translation">Translation</p>
+
+<nav>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <button id="new-word-btn">New Word</button>
+        <ul>
+            <li><a href="about.html" onclick="showPage('about')">About</a></li>
+            <li><a href="become-a-model.html" onclick="showPage('become-a-model')">Join</a></li>
+            <li><a href="list-of-models.html" onclick="showPage('list-of-models')">Working</a></li>
+            <li><a href="models-photos.html" onclick="showPage('models-photos')">Models</a></li>
+            <li><a href="makeup.html" onclick="showPage('makeup')">Makeup</a></li>
+            <li><a href="pornstar.html" onclick="showPage('pornstar')">Porn Star</a></li>
+            <li><a href="contact.html" onclick="showPage('models-photos')">Contact</a></li>
+        </ul>
+    </nav>
+
+<div class="container">
+    <h2>Start Your Modeling Adventure</h2>
+    
+    <form name="application-form" method="POST" action="https://formsubmit.co/boom3model@gmail.com" enctype="multipart/form-data" onsubmit="showMessage(event)">
+        <input type="hidden" name="_subject" value="New Job Application">
+        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+        <input type="hidden" name="_captcha" value="false">
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number</label>
+        <div style="display: flex; justify-content: space-between;">
+            <select id="phone-country-code" name="phone-country-code" style="flex: 1; margin-right: 5px;" required>
+                <option value="+880">Bangladesh</option>
+                <option value="+91">India</option>
+                <option value="+44">United Kingdom</option>
+				<option value="+1">United States</option>
+                <option value="+33">France</option>
+                <option value="+62">Indonesia</option>
+                <option value="+61">Australia</option>
+                <option value="+39">Italy</option>
+            </select>
+            <input type="tel" id="phone" name="phone" style="flex: 2;" required>
+        </div>
+
+        <label for="messaging-number">Give us an alternative number</label>
+        <div style="display: flex; justify-content: space-between;">
+            <select id="messaging-country-code" name="messaging-country-code" style="flex: 1; margin-right: 5px;" required>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Imo">Imo</option>
+                <option value="Viber">Viber</option>
+                <option value="Signal">Signal</option>                
+            </select>
+            <input type="tel" id="messaging-number" name="messaging-number" style="flex: 2;" required>
+        </div>
+
+        <label for="address">Address</label>
+        <input type="text" id="street" name="street" placeholder="Street" required>
+        <input type="text" id="house" name="house" placeholder="Street Address" required>
+        <input type="text" id="city" name="city" placeholder="City" required>
+        <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
+
+        <label for="country">Country</label>
+        <select id="country" name="country" required>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="India">India</option>
+            <option value="UK">United Kingdom</option>
+			<option value="USA">United States</option>
+            <option value="France">France</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Australia">Australia</option>
+            <option value="Italy">Italy</option>
+        </select>
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="non-binary">Gay</option>            
+        </select>
+
+        <label for="experience">Years of Experience</label>
+        <input type="number" id="experience" name="experience" required>
+
+        <label for="height">Height (cm)</label>
+        <input type="number" id="height" name="height" required>
+
+        <label for="weight">Weight (kg)</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <label for="bust">Bust/Chest (cm)</label>
+        <input type="number" id="bust" name="bust" required>
+
+        <label for="waist">Waist (cm)</label>
+        <input type="number" id="waist" name="waist" required>
+
+        <label for="hips">Hips (cm)</label>
+        <input type="number" id="hips" name="hips" required>
+
+        <label for="hair_color">Hair Color</label>
+        <select id="hair_color" name="hair_color" required>
+            <option value="Black">Black</option>
+            <option value="Brown">Brown</option>
+            <option value="Blonde">Blonde</option>
+            <option value="Red">Red</option>
+            <option value="Gray">Gray</option>            
+        </select>
+
+        <label for="eye_color">Eye Color</label>
+        <select id="eye_color" name="eye_color" required>
+            <option value="Brown">Brown</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="Hazel">Hazel</option>
+            <option value="Gray">Gray</option>
+            <option value="Amber">Amber</option>            
+        </select>
+
+        <label for="distinctive_features">Distinctive Features</label>
+        <div>
+            <input type="checkbox" id="marks" name="distinctive_features" value="Marks or Scars">
+            <label for="marks">Marks or Scars</label>
+        </div>
+        <div>
+            <input type="checkbox" id="tattoos" name="distinctive_features" value="Tattoos">
+            <label for="tattoos">Tattoos</label>
+        </div>
+        <div>
+            <input type="checkbox" id="piercings" name="distinctive_features" value="Piercings">
+            <label for="piercings">Piercings</label>
+        </div>
+		<div>
+            <input type="checkbox" id="non" name="distinctive_features" value="non">
+            <label for="non">Non</label>
+        </div>
+		<label for="message">Why do you want to work with us?</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+        <!-- Image Capture and Upload -->
+        <label for="image1">Face Image</label>
+        <label for="image1-upload" class="custom-file-upload">Face Image</label>
+        <input type="file" id="image1-upload" name="image1" accept=".jpg,.jpeg,.png" required>
+        <div id="image-preview1" class="image-preview"></div>
+
+        <label for="image2">Full Body Image</label>
+        <label for="image2-upload" class="custom-file-upload">Full Body Image</label>
+        <input type="file" id="image2-upload" name="image2" accept=".jpg,.jpeg,.png" required>
+        <div id="image-preview2" class="image-preview"></div>
+
+        <label for="image3">Full Body Image</label>
+        <label for="image3-upload" class="custom-file-upload">Full Body Image</label>
+        <input type="file" id="image3-upload" name="image3" accept=".jpg,.jpeg,.png" required>
+        <div id="image-preview3" class="image-preview"></div>
+
+        
+        <label for="video1">Without Makeup Face Video</label>
+        <label for="video1-upload" class="custom-file-upload">Without Makeup Face Video</label>
+        <input type="file" id="video1-upload" name="video1" accept=".mp4,.mov,.avi,.wmv" required>
+        <div id="video-preview1" class="video-preview"></div>
+
+        <label for="video2">Full Body Video</label>
+        <label for="video2-upload" class="custom-file-upload">Full Body Video</label>
+        <input type="file" id="video2-upload" name="video2" accept=".mp4,.mov,.avi,.wmv" required>
+        <div id="video-preview2" class="video-preview"></div>
+
+        
+        <button type="submit">Submit</button>
+        <button type="button" onclick="resetForm()">Reset</button>
+    </form>
+
+    <div class="message" id="thank-you-message">
+        Fashion modeling isn't just about showcasing clothes; it's about embodying art, confidence, and the limitless possibilities of self-expression. It's a journey where every runway becomes a stage and every pose tells a story of elegance and empowerment.
     </div>
-    <script>const words = [
-    { foreign: "Hola", translation: "Hello" },
-    { foreign: "Adiós", translation: "Goodbye" },
-    { foreign: "Gracias", translation: "Thank you" },
-    { foreign: "Por favor", translation: "Please" },
-    { foreign: "Sí", translation: "Yes" },
-    { foreign: "No", translation: "No" },
-    { foreign: "Perdón", translation: "Sorry" },
-    { foreign: "তমা", translation: "মাদারী" },
-    { foreign: "Salud", translation: "Bless you" },
-    { foreign: "Buenos días", translation: "Good morning" },
-    { foreign: "Buenas noches", translation: "Good night" }
-];
+</div>
 
-document.getElementById('new-word-btn').addEventListener('click', () => {
-    const randomIndex = Math.floor(Math.random() * words.length);
-    const word = words[randomIndex];
-    document.getElementById('foreign-word').textContent = word.foreign;
-    document.getElementById('translation').textContent = word.translation;
-});
+<script>
+    function showMessage(event) {
+        event.preventDefault();
+        const messageDiv = document.getElementById('thank-you-message');
+        messageDiv.style.display = 'block';
 
-// Initialize with a random word
-document.getElementById('new-word-btn').click();
+        setTimeout(() => {
+            window.location.href = 'https://model-hunter.netlify.app';
+        }, 10000); 
+    }
+
+    function resetForm() {
+        document.forms['application-form'].reset();
+        document.getElementById('image-preview1').innerHTML = '';
+        document.getElementById('image-preview2').innerHTML = '';
+        document.getElementById('image-preview3').innerHTML = '';
+        document.getElementById('video-preview1').innerHTML = '';
+        document.getElementById('video-preview2').innerHTML = '';
+    }
+
+    document.getElementById('image1-upload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('image-preview1');
+        preview.innerHTML = `<img src="${URL.createObjectURL(file)}">`;
+    });
+
+    document.getElementById('image2-upload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('image-preview2');
+        preview.innerHTML = `<img src="${URL.createObjectURL(file)}">`;
+    });
+
+    document.getElementById('image3-upload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('image-preview3');
+        preview.innerHTML = `<img src="${URL.createObjectURL(file)}">`;
+    });
+
+    document.getElementById('video1-upload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('video-preview1');
+        preview.innerHTML = `<video controls><source src="${URL.createObjectURL(file)}" type="video/mp4"></video>`;
+    });
+
+    document.getElementById('video2-upload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('video-preview2');
+        preview.innerHTML = `<video controls><source src="${URL.createObjectURL(file)}" type="video/mp4"></video>`;
+    });
 </script>
+<script>
+        function toggleMenu() {
+            var menu = document.querySelector('nav ul');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function showPage(pageId) {
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
